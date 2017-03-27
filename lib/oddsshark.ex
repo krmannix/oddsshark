@@ -1,18 +1,14 @@
 defmodule OddsShark do
-  @moduledoc """
-  Documentation for OddsShark.
-  """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> OddsShark.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def matchups() do
+    {_, res} = OddsShark.Request.get_request("/upcoming/us/ncaab")
+    Map.get(res, "data")
   end
+
+  def matchups(%{league: league}) do
+    endpoint = Path.join("/upcoming/us", league)
+    {_, res} = OddsShark.Request.get_request(endpoint)
+    Map.get(res, "data")
+  end
+
 end
