@@ -2,7 +2,7 @@ defmodule OddsShark.Request do
   use HTTPoison.Base
 
   @moduledoc """
-  Provies an API Wrapper around OddsShark
+  HTTP requests
   """
 
   @api_root "http://io.oddsshark.com/"
