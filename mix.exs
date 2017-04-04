@@ -32,7 +32,7 @@ defmodule OddsShark.Mixfile do
 
   defp description do
     """
-    API wrapper for OddsShark in Elixir
+    OddsShark API wrapper in Elixir
     """
   end
 
