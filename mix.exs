@@ -39,7 +39,6 @@ defmodule OddsShark.Mixfile do
   defp package do
     [# These are the default files included in the package
      name: :oddsshark,
-     files: ["lib", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
      maintainers: ["K. Rodman Mannix"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/krmannix/oddsshark"}
