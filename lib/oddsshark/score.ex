@@ -1,4 +1,4 @@
-defmodule OddsShark.ScoreAPI do
+defmodule OddsShark.Score do
   @base_path "scores"
 
   def get(league) do
@@ -6,10 +6,12 @@ defmodule OddsShark.ScoreAPI do
   end
 
   def get(league, date) do
-    {_, res} =
-      get_path(league, date)
-      |> OddsShark.Request.get_request
-    res
+    make_request(league, date)
+  end
+
+  defp make_request(league, date) do
+    get_path(league, date)
+    |> OddsShark.get_request
   end
 
   defp get_path(league, date) do

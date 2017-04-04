@@ -1,48 +1,36 @@
 defmodule OddsShark do
+  use HTTPoison.Base
+
   @moduledoc """
-  OddsShark implements wrapper functions around the OddsShark service
+  HTTP requests
   """
 
-  @doc """
-  Returns current days matchups for the league
-  """
-  def matchups(league) do
-    OddsShark.MatchupAPI.get(league)
+  @api_root "http://io.oddsshark.com/"
+
+  def get_request(endpoint) do
+    url = create_request_url(endpoint)
+    HTTPoison.get(url, create_headers())
+    |> handle_response
   end
 
-  @doc """
-  Returns current days matchups for the league
-  """
-  def ticker(league) do
-    OddsShark.TickerAPI.get(league)
+  def handle_response({:ok, %{body: body, status_code: 200}}) do
+    {:ok, process_response_body(body)}
   end
 
-  @doc """
-  Returns current days scores for the league
-  """
-  def scores(league) do
-    OddsShark.ScoreAPI.get(league)
+  def handle_response({:ok, %{}}) do
+    {:error, "an error occurred"}
   end
 
-  @doc """
-  Returns scores for the league and date
-  """
-  def scores(league, date) do
-    OddsShark.ScoreAPI.get(league, date)
+  defp create_request_url(endpoint) do
+    Path.join(@api_root, endpoint)
   end
 
-  @doc """
-  Returns gamecenters for the matchup
-  """
-  def gamecenter(league, id) do
-    OddsShark.GamecenterAPI.get(league, id)
+  defp create_headers do
+    [{"Referer", "http://www.oddsshark.com"}]
   end
 
-  @doc """
-  Returns play by plays for the matchup
-  """
-  def play_by_play(league, id) do
-    OddsShark.PlayByPlayAPI.get(league, id)
+  defp process_response_body(body) do
+    body
+    |> Poison.decode!
   end
-
 end
