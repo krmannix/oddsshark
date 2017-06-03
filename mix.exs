@@ -27,6 +27,7 @@ defmodule OddsShark.Mixfile do
     [
       {:httpoison, "~> 0.11.1"},
       {:poison, "~> 3.0"},
+      {:ex_doc, "~> 0.10", only: :dev},
     ]
   end
 

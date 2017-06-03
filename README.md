@@ -9,7 +9,7 @@ by adding `oddsshark` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:oddsshark, "~> 0.1.0"}]
+  [{:oddsshark, "~> 0.4.1"}]
 end
 ```
 
